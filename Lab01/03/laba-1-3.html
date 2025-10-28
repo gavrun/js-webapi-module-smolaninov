@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Drawing with function logic.</h2>
+
+    <script>
+        // returns appropriate word form depending on number param
+        function getDayRu(n) {
+            n = Math.abs(n) % 100;
+            let _n = n % 10;
+            if (n > 10 && n < 20) return "дней";
+            if (_n > 1 && _n < 5) return "дня";
+            if (_n === 1) return "день";
+            return "дней";
+        }
+
+        function getDayEn(n) {
+            n = Math.abs(n);
+            return n === 1 ? "day" : "days";
+        }
+
+        let n = prompt("Enter number of days: ", 1);
+
+        // alert("You entered " + n + " " + getDayRu(n));
+        alert("You entered " + n + " " + getDayEn(n));
+    </script>
+</body>
+
+</html>
