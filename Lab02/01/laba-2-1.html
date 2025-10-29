@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .wrap {
+            width: min(600px, 90vw);
+            margin: 2rem auto;
+            text-align: center;
+        }
+
+        img.zoomable {
+            cursor: pointer;
+            transition: transform .2s ease;
+            max-width: 100%;
+            height: auto;
+        }
+
+        img.zoomable.zoomed {
+            transform: scale(2);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <img id="pic" class="zoomable" src="images\Eich.jpg" alt="Image" width="200" />
+        <p>Click on the picture to zoom in/out.</p>
+    </div>
+
+    <script>
+        const img = document.getElementById('pic');
+
+        img.addEventListener('click', (e) => {
+            if (e.button === 0) {
+                img.classList.toggle('zoomed');
+            }
+        });
+    </script>
+</body>
+
+</html>

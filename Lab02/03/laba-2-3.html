@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="#" id="newWinLink">New window</a>
+
+    <script>
+        function openNewWindow() {
+            const features = [
+                'width=300',
+                'height=400',
+                'resizable=yes',
+                'toolbar=yes',
+                'menubar=yes',
+                'location=yes',
+                'status=yes',
+                'scrollbars=yes'
+            ].join(',');
+
+
+            const win = window.open('about:blank', 'sampleWin', features);
+            if (win) {
+                win.document.write(`<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><title>New window</title></head>
+<body style="font:16px/1.4 system-ui, sans-serif; padding:1rem;">
+<h1>New window</h1>
+<p>New window content. Try 'open in a new window' optionally.</p>
+</body></html>`);
+                win.document.close();
+            } else {
+                alert('Browser blocked the pop-up window. Allow pop-ups for this site.');
+            }
+        }
+
+        document.getElementById('newWinLink').addEventListener('click', function (e) {
+            e.preventDefault();
+            openNewWindow();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        #change {
+            transition: all .2s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <p id="change">This text is going to change a style.</p>
+
+    <!-- call by clicking -->
+    <p><a href="#" id="byClick">Change style by clicking</a></p>
+
+    <!-- call by hovering -->
+    <p><a href="#" id="byHover">Change style by hovering</a></p>
+
+
+    <script>
+        function ChangeStyle() {
+            const el = document.getElementById('change');
+            el.style.color = '#b00020';
+            el.style.fontSize = '1.5rem';
+            el.style.textDecoration = 'underline';
+            el.style.fontWeight = '700';
+        }
+
+        document.getElementById('byClick').addEventListener('click', function (e) {
+            e.preventDefault();
+            ChangeStyle();
+        });
+
+        const hoverLink = document.getElementById('byHover');
+        hoverLink.addEventListener('mouseenter', ChangeStyle);
+        hoverLink.addEventListener('mouseleave', function () {
+            const el = document.getElementById('change');
+            el.style.color = '';
+            el.style.fontSize = '';
+            el.style.textDecoration = '';
+            el.style.fontWeight = '';
+        });
+    </script>
+</body>
+
+</html>

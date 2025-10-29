@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <form id="regForm" method="post" action="#">
+        <h1>Registration form</h1>
+
+        <label>Login
+            <input type="text" name="login" />
+        </label>
+        <label>Password
+            <input type="password" name="password" />
+        </label>
+        <label>Check password
+            <input type="password" name="password2" />
+        </label>
+        <label>E-mail
+            <input type="text" name="email" />
+        </label>
+
+        <button type="submit" style="margin-top:1rem;">Send</button>
+
+        <ul id="errors" class="error"></ul>
+    </form>
+
+    <script>
+        document.getElementById('regForm').addEventListener('submit', function (e) {
+            const form = e.currentTarget;
+            const login = form.elements['login'].value.trim();
+            const pwd = form.elements['password'].value;
+            const pwd2 = form.elements['password2'].value;
+            const email = form.elements['email'].value.trim();
+
+            const errors = [];
+
+            // Verify that all fields are filled in
+            if (!login || !pwd || !pwd2 || !email) {
+                errors.push('Please fill in all fields.');
+            }
+            // Password length is 6-12 characters
+            if (pwd.length < 6 || pwd.length > 12) {
+                errors.push('Password length must be between 6 and 12 characters.');
+            }
+            // Password match
+            if (pwd !== pwd2) {
+                errors.push('Passwords do not match.');
+            }
+            // Presence of the @ symbol in email
+            if (email.indexOf('@') === -1) {
+                errors.push('Invalid E-mail format.');
+            }
+
+            const list = document.getElementById('errors');
+            list.innerHTML = '';
+
+            if (errors.length) {
+                e.preventDefault(); // block sending if errors
+                errors.forEach(msg => {
+                    const li = document.createElement('li');
+                    li.textContent = msg;
+                    list.appendChild(li);
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
