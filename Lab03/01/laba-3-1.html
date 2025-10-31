@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <title>Трехколоночный макет</title>
+    <style>
+        body {
+            font: 0.8em Arial, Helvetica, sans-serif;
+            background: #D7E1F2;
+            color: #ffe;
+        }
+
+        a {
+            color: #008BCE;
+        }
+
+        .container {
+            width: 500px;
+            margin: 0 auto;
+            background: #FCE600;
+        }
+
+        header {
+            font-size: 2.2em;
+            text-align: center;
+            padding: 5px;
+            background: #D71920;
+        }
+
+        nav,
+        aside {
+            float: left;
+            width: 110px;
+            padding: 5px;
+        }
+
+        main {
+            background: #54B948;
+            margin: 0 120px;
+            /* под две боковые колонки */
+            padding: 10px;
+        }
+
+        aside {
+            float: right;
+            color: #000;
+        }
+
+        h2 {
+            margin: 0 0 1em;
+        }
+
+        footer {
+            clear: both;
+            padding: 5px;
+            background: #D71920;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>Исторический турнир</header>
+
+        <nav>
+            <p><a href="stat.html">Статистика турнира</a></p>
+            <p><a href="interview.html">Интервью с главным судьей</a></p>
+            <p><a href="ask.html">Конкурсные вопросы</a></p>
+        </nav>
+
+        <aside>
+            <h3>Статистика</h3>
+            <p>одиннадцать человек дошли до финала;</p>
+            <p>один человек правильно указал в каком стиле писал Диего Веласкес;</p>
+            <p>только один человек знал, кто изобрел пароход;</p>
+        </aside>
+
+        <main>
+            <article>
+                <h2>Опрос общественного мнения показал</h2>
+                <ul>
+                    <li>что пароход изобретен: Петром I, А. Эйнштейном и А. Поповым;</li>
+                    <li>Диего Веласкес писал свои полотна в стиле: империализма, кубизма и империосионизма;</li>
+                    <li>Фаросский маяк находится в Фаросе;</li>
+                    <li>конфуцианство возникло в: Италии, Корее и Франции;</li>
+                    <li>богами торговли и воровства в Древней Греции были: Марс, Меркурий и Дионис;</li>
+                    <li>Франция – это город;</li>
+                    <li>богами загробного мира в Египте были: Аид, Анубис и Ассирис;</li>
+                    <li>столица Золотой Орды — Монголия;</li>
+                    <li>главные противники Александра Македонского: татаро-монголы, Дедал и Цезарь;</li>
+                </ul>
+            </article>
+        </main>
+
+        <footer>&copy; Имя Фамилия</footer>
+    </div>
+</body>
+
+</html>
