@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            background: #eee;
+        }
+
+        canvas {
+            border: 1px solid #ccc;
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="grad" width="400" height="300"></canvas>
+
+    <script>
+        const canvas = document.getElementById('grad');
+        const context = canvas.getContext('2d');
+
+        const gradient = context.createLinearGradient(0, 0, canvas.width, canvas.height);
+
+        gradient.addColorStop(0, '#d00063');
+        gradient.addColorStop(0.35, '#007f6f');
+        gradient.addColorStop(0.65, '#5ad06f');
+        gradient.addColorStop(1, '#ffe600');
+
+        context.fillStyle = gradient;
+        context.fillRect(0, 0, canvas.width, canvas.height);
+    </script>
+</body>
+
+</html>

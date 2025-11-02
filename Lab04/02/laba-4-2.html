@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>Image element &lt;img&gt;</h2>
+    <img src="images/logo.svg" alt="SVG" width="200">
+
+    <h2>Embeded document &lt;embed&gt;</h2>
+    <embed src="images/logo.svg" type="image/svg+xml" width="200" height="200">
+
+    <h2>Embeded object &lt;object&gt;</h2>
+    <object data="images/logo.svg" type="image/svg+xml" width="200" height="200">
+        Browser does not support SVG.
+    </object>
+
+    <h2>Built-in HTML SVG element</h2>
+    <svg width="200" height="200" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="40" fill="blue" />
+        <text x="50" y="55" text-anchor="middle" font-size="14" fill="#000">SVG</text>
+    </svg>
+
+    <h2>Built-in HTML SVG element (advanced)</h2>
+    <svg width="200" height="200" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="8" fill="#3b4eff" />
+        <ellipse cx="50" cy="50" rx="30" ry="15" stroke="#0a0a40" stroke-width="2.5" fill="none" />
+        <ellipse cx="50" cy="50" rx="30" ry="15" stroke="#0a0a40" stroke-width="2.5" fill="none"
+            transform="rotate(60 50 50)" />
+        <ellipse cx="50" cy="50" rx="30" ry="15" stroke="#0a0a40" stroke-width="2.5" fill="none"
+            transform="rotate(-60 50 50)" />
+        <circle cx="80" cy="50" r="4" fill="#3b4eff" />
+        <circle cx="35" cy="72" r="4" fill="#3b4eff" />
+        <circle cx="35" cy="28" r="4" fill="#3b4eff" />
+    </svg>
+
+</body>
+
+</html>
