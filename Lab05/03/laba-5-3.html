@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phone book</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        input {
+            margin-right: 6px;
+        }
+
+        ul {
+            margin-top: 15px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        button {
+            margin-left: 6px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Phone book (sessionStorage)</h2>
+
+    <label>Name:
+        <input id="name" type="text" placeholder="Deepak">
+    </label>
+    <label>Phone:
+        <input id="phone" type="text" placeholder="+91 ...">
+    </label>
+    <button id="addBtn">Add</button>
+
+    <ul id="list"></ul>
+
+    <script>
+        const STORAGE_KEY = "phonebook";
+
+        // load existing records
+        renderItemList();
+
+        document.getElementById("addBtn").addEventListener("click", function () {
+            const name = document.getElementById("name").value.trim();
+            const phone = document.getElementById("phone").value.trim();
+            if (!name || !phone) {
+                alert("Fill in both fields");
+                return;
+            }
+            // read
+            const data = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || "[]");
+            // add
+            data.push({ name, phone });
+            // save 
+            sessionStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+            // clean
+            document.getElementById("name").value = "";
+            document.getElementById("phone").value = "";
+            // render
+            renderItemList();
+        });
+
+        function renderItemList() {
+            const listElement = document.getElementById("list");
+            listElement.innerHTML = "";
+
+            const data = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || "[]");
+
+            data.forEach((item, index) => {
+                const li = document.createElement("li");
+                li.textContent = item.name + " - " + item.phone;
+
+                const deleteBtn = document.createElement("button");
+                deleteBtn.textContent = "Remove";
+                deleteBtn.addEventListener("click", function () {
+                    deleteItem(index);
+                });
+                li.appendChild(deleteBtn);
+                listElement.appendChild(li);
+            });
+        };
+
+        function deleteItem(index) {
+            const data = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || "[]");
+            data.splice(index, 1);
+            sessionStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+            renderItemList();
+        };
+    </script>
+</body>
+
+</html>

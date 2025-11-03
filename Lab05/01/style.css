@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+p.info {
+    margin-bottom: 15px;
+}
+
+.row {
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+label {
+    width: 70px;
+}
+
+input {
+    padding: 4px 6px;
+    font-size: 14px;
+}
+
+.icon {
+    width: 16px;
+    height: 16px;
+    background-size: 16px 16px;
+}
+
+.icon::before {
+    content: "";
+    display: block;
+    width: 16px;
+    height: 16px;
+    background-size: 16px 16px;
+}
+
+input:required:invalid+.icon::before {
+    background-image: url("images/no.jpg");
+}
+
+input:required:valid+.icon::before {
+    background-image: url("images/yes.jpg");
+}
+
+input:optional+.icon::before {
+    background-image: url("images/yes.jpg");
+}
+
+button {
+    margin-top: 10px;
+    padding: 6px 12px;
+}
+
