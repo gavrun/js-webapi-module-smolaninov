@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        #log {
+            white-space: pre-line;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>HTML5 Geolocation API</h2>
+
+    <!-- use browser window started with file://
+    limited in Live Server in VSCode -->
+    <button id="btnCurrent">Get location one time</button>
+    <button id="btnWatch">Follow location</button>
+    <button id="btnClear">Stop following</button>
+
+    <div id="log"></div>
+
+    <script>
+        const log = document.getElementById('log');
+        let watchId = null;
+
+        function write(msg) {
+            log.textContent += msg + '\n';
+        }
+
+        if (!('geolocation' in navigator)) {
+            write('Browser does not support Geolocation');
+        }
+
+        // get location
+        document.getElementById('btnCurrent').addEventListener('click', () => {
+            if (!navigator.geolocation) return;
+            navigator.geolocation.getCurrentPosition((position) => {
+                const { latitude, longitude, accuracy } = position.coords;
+                write('Current location: ');
+                write('Latitude: ' + latitude);
+                write('Longitude: ' + longitude);
+                write('Accuracy: ' + accuracy);
+            },
+                (error) => {
+                    write('Error: ' + error.message);
+                },
+                {
+                    enableHighAccuracy: true,
+                    timeout: 5000,
+                    maximumAge: 0
+                });
+        });
+
+        // follow location
+        document.getElementById('btnWatch').addEventListener('click', () => {
+            if (!navigator.geolocation) return;
+            if (watchId !== null) {
+                write('Following');
+                return;
+            }
+            watchId = navigator.geolocation.watchPosition((position) => {
+                const { latitude, longitude, speed } = position.coords;
+                write('Updating position: ' + new Date().toLocaleTimeString());
+                write('Latitude: ' + latitude + ', Longitude: ' + longitude);
+                write('Velocity: ' + (speed == null ? 'no data' : speed) + '\n');
+            },
+                (error) => {
+                    write('Error: ' + error.message);
+                },
+                {
+                    enableHighAccuracy: true,
+                    maximumAge: 0
+                });
+        });
+
+        // stop follow location
+        document.getElementById('btnClear').addEventListener('click', () => {
+            if (watchId !== null) {
+                navigator.geolocation.clearWatch(watchId);
+                write('Stop following');
+                watchId = null;
+            }
+        });
+    </script>
+</body>
+
+</html>

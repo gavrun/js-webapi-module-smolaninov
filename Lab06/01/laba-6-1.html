@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .column {
+            width: 180px;
+            min-height: 250px;
+            border: 3px solid #c00;
+            padding: 10px;
+        }
+
+        .item {
+            border: 1px solid #000;
+            padding: 8px;
+            margin-bottom: 10px;
+            background: #fff;
+            cursor: move;
+        }
+
+        .over {
+            background: #ffe7c4;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="left" class="column">
+        <div class="item" draggable="true" id="item1">Text 2</div>
+        <div class="item" draggable="true" id="item2">Text 3</div>
+    </div>
+    <div id="right" class="column">
+        <div class="item" draggable="true" id="item3">Text 1</div>
+
+    </div>
+
+    <script>
+        // drop zone
+        const columns = document.querySelectorAll('.column');
+        let draggedId = null;
+
+        // handle draggable
+        document.addEventListener('dragstart', (e) => {
+            const target = e.target;
+            if (target.classList.contains('item')) {
+                draggedId = target.id;
+                e.dataTransfer.setData('text/plain', draggedId);
+                e.dataTransfer.effectAllowed = 'move';
+            }
+        });
+
+        columns.forEach((column) => {
+            column.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                e.dataTransfer.dropEffect = 'move';
+                column.classList.add('over');
+            });
+            column.addEventListener('dragleave', () => {
+                column.classList.remove('over');
+            });
+            column.addEventListener('drop', (e) => {
+                e.preventDefault();
+                column.classList.remove('over');
+                const id = e.dataTransfer.getData('text/plain') || draggedId;
+                const draggedElement = document.getElementById(id);
+                if (draggedElement) {
+                    column.appendChild(draggedElement);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

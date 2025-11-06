@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        a {
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        #content {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Dymanic links</h2>
+    <!-- simulating pages step-over
+    origin is missing if started with file://
+    start Live Server in VSCode -->
+    <p>
+        <a data-page="page1">Page 1</a>
+        <a data-page="page2">Page 2</a>
+        <a data-page="page3">Page 3</a>
+        <a data-page="page4">Page 4</a>
+        <a data-page="page5">Page 5</a>
+    </p>
+
+    <div id="content">Select page</div>
+
+    <script>
+        const content = document.getElementById('content');
+
+        function render(page) {
+            content.textContent = 'This is the content of ' + page;
+        }
+
+        document.addEventListener('click', (e) => {
+            const link = e.target.closest('a[data-page]');
+            if (!link) return;
+            e.preventDefault();
+            const page = link.dataset.page;
+            history.pushState({ page }, '', page);
+            render(page);
+        });
+
+        window.addEventListener('popstate', (e) => {
+            if (e.state && e.state.page) {
+                render(e.state.page);
+            } else {
+                content.textContent = 'Select page';
+            }
+        });
+
+        history.replaceState({ page: 'start' }, '', location.pathname);
+
+
+    </script>
+</body>
+
+</html>
