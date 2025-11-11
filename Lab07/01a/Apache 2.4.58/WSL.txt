@@ -1,0 +1,32 @@
+sudo apt update
+
+sudo apt install -y apache2
+
+sudo mkdir -p /var/www/lab071a
+sudo cp -r <project>/* /var/www/
+sudo chown -R www-data:www-data /var/www/lab071a
+
+sudo tee /etc/apache2/sites-available/lab071a.conf >/dev/null <<'EOF'
+<VirtualHost *:8080>
+    ServerName localhost
+    DocumentRoot /var/www/lab071a
+
+    <Directory /var/www/lab071a>
+        Options Indexes FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    AddType text/cache-manifest .manifest .appcache
+</VirtualHost>
+EOF
+
+echo "Listen 8080" | sudo tee -a /etc/apache2/ports.conf
+
+sudo a2ensite lab071a
+
+sudo systemctl reload apache2
+# sudo systemctl restart apache2
+
+http://localhost:8080/index.html
+

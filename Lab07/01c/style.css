@@ -1,0 +1,19 @@
+body {
+    font-family: system-ui, Arial, sans-serif;
+    padding: 24px;
+}
+
+h1 {
+    margin: 0 0 12px;
+}
+
+pre {
+    background: #111;
+    color: #0f0;
+    padding: 12px;
+    min-height: 120px;
+}
+
+a {
+    text-decoration: none;
+}

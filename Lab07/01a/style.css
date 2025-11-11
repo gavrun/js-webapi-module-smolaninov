@@ -1,0 +1,18 @@
+body {
+    font-family: system-ui, Arial, sans-serif;
+    margin: 2rem;
+}
+
+nav a {
+    margin-right: .75rem;
+}
+
+pre {
+    padding: .75rem;
+    border: 1px solid #ddd;
+    border-radius: .5rem;
+}
+
+button {
+    padding: .5rem 1rem;
+}

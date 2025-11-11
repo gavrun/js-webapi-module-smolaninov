@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Web Workers</h1>
+
+    <p>This page runs arbitrary JavaScript code in Web Worker (a background thread)</p>
+    <p>The main UI stays responsive</p>
+
+    <label for="scriptInpt"><strong>JavaScript to run in worker:</strong></label>
+
+    <textarea name="" id="scriptInpt">
+// Example: heavy computation in a worker.
+// Using workerApi.log(...) to send progress messages,
+// and workerApi.setResult(...) to send the final result.
+
+workerApi.log("Preparing data...");
+
+let limit = 1000000000;
+let sum = 0;
+
+for (let i = 0; i < limit; i++) {
+    sum += Math.sqrt(i);
+
+    if (i % 5000000 === 0) {
+        let progress = Math.round((i / limit) * 100);
+        workerApi.log("Progress: " + progress + "%");
+    }
+}
+
+workerApi.setResult(sum.toFixed(2));
+workerApi.log("Computation finished inside worker.");
+    </textarea>
+
+    <div class="controls">
+        <button id="runBtn">Run in worker</button>
+        <button id="stopBtn" disabled>Stop worker</button>
+
+        <button id="uiBtn" type="button">Add to counter (+1)</button>
+        <span>Counter:
+            <span id="uiCounter">0</span>
+        </span>
+    </div>
+
+    <div id="status">Worker is idle</div>
+    <pre id="output"></pre>
+
+    <div class="note">
+        <p>Try editing the code above and run it again.</p>
+        <p>
+            The JavaScript is executed in <code>worker.js</code> on a background thread
+            and communicates with this page
+            via <code>postMessage</code>.
+        </p>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

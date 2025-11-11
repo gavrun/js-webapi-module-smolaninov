@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" manifest="main.manifest">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Offline demonstration - Main page</h1>
+
+    <nav>
+        <a href="index.html">Main page</a>
+        <a href="about.html">About page</a>
+    </nav>
+
+    <div id="status" class="status">Checking network state</div>
+    <div id="cacheStatus" class="cache-status">Cache state not defined</div>
+
+    <div id="content">
+        <p>This page must be visible offline after opening it online at least once.</p>
+
+        <p>Note: Support for AppCache and this policy was removed from Microsoft Edge starting in version 97</p>
+        <button onclick="updateCache()">Update cache manually</button>
+    </div>
+
+    <div id="debug"></div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

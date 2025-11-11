@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    <h1>WebSocket Demo</h1>
+
+    <div id="status" class="status">Connecting to public server</div>
+
+    <div id="messages"></div>
+
+    <div class="controls">
+        <input type="text" id="messageInput" placeholder="Input test message">
+        <button id="sendButton">Send</button>
+    </div>
+
+    <div class="info">
+        <p>Public server: <code>wss://ws.ifelse.io</code></p>
+        <p>It relays your test message back</p>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,7 @@
+Download from https://sourceforge.net/projects/portableapps/
+
+Unzip FirefoxPortable_60.0_English.paf.zip
+
+Open and extract \App folder from 'FirefoxPortable_60.0_English.paf.exe' file
+
+Start \App\Firefox64\firefox.exe
